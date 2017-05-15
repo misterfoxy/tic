@@ -11,7 +11,7 @@ $(document).ready(function() {
   var count = 0;
 
   //change computer turn to O
-  $('#turnX').click(function(){
+  $('#turnO').click(function(){
     turn = "O";
     computersTurn = "X";
     $('#turnX').removeClass('btn-info');
@@ -19,7 +19,7 @@ $(document).ready(function() {
     reset();
   });
 
-  $('#turnO').click(function(){
+  $('#turnX').click(function(){
     turn = "X";
     computersTurn = "O";
     $('#turnO').removeClass('btn-info');
@@ -42,6 +42,8 @@ $(document).ready(function() {
       }
     }
 
+    winCondition();
+
   };
 
   function playerTurn(turn, id){
@@ -54,9 +56,9 @@ $(document).ready(function() {
       $('#'+id).text(turn);
       winCondition(turns, turn); // checking board and determining victory
 
-      if(gameOn===false){
+      if(gameOn === false){
         computerTurn();
-        winCondition(turns, computerTurn);
+        winCondition(turns, computersTurn);
       }
     }
 
@@ -104,14 +106,15 @@ $(document).ready(function() {
       alert("Player " + currentTurn + " wins!");
     }
 
-    else{
-      gameOn= false;
+    else {
+      gameOn = false;
     }
   };
 
   $('.tic').click(function(){
 
     var slot = $(this).attr('id');
+    console.log(slot);
     playerTurn(turn,slot);
 
   });
